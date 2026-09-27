@@ -1,0 +1,5 @@
+Trajectory for dice_roller  (model gpt-4o, 5 candidates/iteration, max 5 feedback iterations)
+rank: 1.0 = all testbench samples pass, 0..1 = fraction passing, -0.5 = compile warnings, -1 = compile error, -2 = no module in response
+
+iter0: candidate ranks [1.0, 0.9952947003467063, 1.0, 0.991579990094106, 0.9997523526498266] -> best 1.0
+

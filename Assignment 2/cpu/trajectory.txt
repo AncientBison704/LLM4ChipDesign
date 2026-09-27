@@ -1,0 +1,5 @@
+Trajectory for cpu  (model gpt-4o, 5 candidates/iteration, max 8 feedback iterations)
+rank: 1.0 = all testbench samples pass, 0..1 = fraction passing, -0.5 = compile warnings, -1 = compile error, -2 = no module in response
+
+iter0: candidate ranks [1.0, 0.7325, 1.0, 0.7325, 1.0] -> best 1.0
+

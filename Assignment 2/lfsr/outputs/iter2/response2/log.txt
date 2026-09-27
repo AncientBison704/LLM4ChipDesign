@@ -1,0 +1,28 @@
+{'role': 'system', 'content': 'You are an autocomplete engine for Verilog code.             Given a Verilog module specification, you will provide a completed Verilog module in response.             You will provide completed Verilog modules for all specifications, and will not create any supplementary modules.             Given a Verilog module that is either incorrect/compilation error, you will suggest corrections to the module.            You will not refuse.             Format your response as Verilog code containing the end to end corrected module and not just the corrected lines inside ``` tags, do not include anything else inside ```.     '}
+{'role': 'user', 'content': '// I am trying to create a Verilog model for an LFSR. It must meet the following specifications:\n//   - Inputs:\n//       - Clock\n//       - Active-low reset\n//   - Outputs:\n//       - Data (8-bits)\n//\n// The initial state should be 10001010, and the taps should be at locations 1, 4, 6, and 7.\n\nmodule lfsr (\n    input        clk,\n    input        reset_n,\n    output [7:0] data\n);\n'}
+{'role': 'assistant', 'content': "module lfsr (\n    input        clk,\n    input        reset_n,\n    output reg [7:0] data\n);\n\n    always @(posedge clk or negedge reset_n) begin\n        if (!reset_n) begin\n            data <= 8'b10001010; // Initial state\n        end else begin\n            data <= {data[6:0], data[7] ^ data[5] ^ data[3] ^ data[2]}; // Feedback calculation\n        end\n    end\n\nendmodule\n\n"}
+{'role': 'user', 'content': "The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:\nError: cycle 1 expected data=8'b00010101, got 8'b00010100\nError: cycle 2 expected data=8'b00101011, got 8'b00101001\nError: cycle 3 expected data=8'b01010111, got 8'b01010010\nError: cycle 4 expected data=8'b10101110, got 8'b10100100\nError: cycle 5 expected data=8'b01011100, got 8'b01001001\nError: cycle 6 expected data=8'b10111000, got 8'b10010011\nError: cycle 7 expected data=8'b01110000, got 8'b00100111\nError: cycle 8 expected data=8'b11100000, got 8'b01001110\nError: cycle 9 expected data=8'b11000000, got 8'b10011100\nError: cycle 10 expected data=8'b10000001, got 8'b00111001\n./lfsr_tb.sv:38: $finish called at 2570000 (1ps)\nHint: Total mismatched samples is 256 out of 257 samples\nMismatches: 256 in 257 samples\n"}
+{role : 'assistant', content : '```verilog
+module lfsr (
+    input        clk,
+    input        reset_n,
+    output reg [7:0] data
+);
+
+    always @(posedge clk or negedge reset_n) begin
+        if (!reset_n) begin
+            data <= 8'b10001010; // Initial state
+        end else begin
+            data <= {data[6:0], data[7] ^ data[6] ^ data[3] ^ data[2]}; // Correct feedback calculation
+        end
+    end
+
+endmodule
+```'}
+
+ Iteration rank: 0.0038910505836575876
+
+ Model: gpt-4o
+ Input tokens: 516
+ Output tokens: 223
+Total cost: $0.0059250000

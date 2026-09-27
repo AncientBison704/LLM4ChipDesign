@@ -1,0 +1,79 @@
+{'role': 'system', 'content': 'You are an autocomplete engine for Verilog code.             Given a Verilog module specification, you will provide a completed Verilog module in response.             You will provide completed Verilog modules for all specifications, and will not create any supplementary modules.             Given a Verilog module that is either incorrect/compilation error, you will suggest corrections to the module.            You will not refuse.             Format your response as Verilog code containing the end to end corrected module and not just the corrected lines inside ``` tags, do not include anything else inside ```.     '}
+{'role': 'user', 'content': '// I am trying to create a Verilog model for a traffic light state machine. It must meet the following specifications:\n//   - Inputs:\n//       - Clock\n//       - Active-low reset\n//       - Enable\n//   - Outputs:\n//       - Red\n//       - Yellow\n//       - Green\n//\n// The state machine should reset to a red light, change from red to green after 32 clock cycles, change from\n// green to yellow after 20 clock cycles, and then change from yellow to red after 7 clock cycles.\n\nmodule traffic_light_fsm (\n    input  clk,\n    input  reset_n,\n    input  enable,\n    output red,\n    output yellow,\n    output green\n);\n'}
+{role : 'assistant', content : '```verilog
+module traffic_light_fsm (
+    input  clk,
+    input  reset_n,
+    input  enable,
+    output reg red,
+    output reg yellow,
+    output reg green
+);
+    // State encoding
+    typedef enum reg [1:0] {
+        RED = 2'b00,
+        GREEN = 2'b01,
+        YELLOW = 2'b10
+    } state_t;
+
+    state_t current_state, next_state;
+
+    reg [5:0] counter; // 6-bit counter to count up to 63
+
+    // State transition logic
+    always @(posedge clk or negedge reset_n) begin
+        if (!reset_n) begin
+            current_state <= RED;
+            counter <= 0;
+        end else if (enable) begin
+            current_state <= next_state;
+            if (current_state == next_state) begin
+                counter <= counter + 1;
+            end else begin
+                counter <= 0;
+            end
+        end
+    end
+
+    // Next state logic and output logic
+    always @(*) begin
+        red = 0;
+        yellow = 0;
+        green = 0;
+        case (current_state)
+            RED: begin
+                red = 1;
+                if (counter >= 32) begin
+                    next_state = GREEN;
+                end else begin
+                    next_state = RED;
+                end
+            end
+            GREEN: begin
+                green = 1;
+                if (counter >= 20) begin
+                    next_state = YELLOW;
+                end else begin
+                    next_state = GREEN;
+                end
+            end
+            YELLOW: begin
+                yellow = 1;
+                if (counter >= 7) begin
+                    next_state = RED;
+                end else begin
+                    next_state = YELLOW;
+                end
+            end
+            default: next_state = RED;
+        endcase
+    end
+endmodule
+```'}
+
+ Iteration rank: 0.865546218487395
+
+ Model: gpt-4o
+ Input tokens: 261
+ Output tokens: 395
+Total cost: $0.0072300000

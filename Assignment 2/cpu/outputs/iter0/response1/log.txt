@@ -1,0 +1,81 @@
+{'role': 'system', 'content': 'You are an autocomplete engine for Verilog code.             Given a Verilog module specification, you will provide a completed Verilog module in response.             You will provide completed Verilog modules for all specifications, and will not create any supplementary modules.             Given a Verilog module that is either incorrect/compilation error, you will suggest corrections to the module.            You will not refuse.             Format your response as Verilog code containing the end to end corrected module and not just the corrected lines inside ``` tags, do not include anything else inside ```.     '}
+{'role': 'user', 'content': "// Let us make a brand new microprocessor design together. We're severely constrained on space and I/O.\n// We have to fit in 1000 standard cells of an ASIC, so I think we will need to restrict ourselves to an\n// accumulator based 8-bit architecture with no multi-byte instructions.\n//\n// We have settled on the following architecture. Implement it as a single Verilog module named cpu.\n//\n// Architecture\n//   - 8-bit accumulator (acc) and a 5-bit program counter (pc). No other architectural registers.\n//   - Harvard organisation with BOTH memories outside the cpu module (to save cells):\n//       * Instruction memory: 32 x 8-bit ROM. The cpu drives pc; the ROM returns instr = rom[pc]\n//         combinationally in the same cycle.\n//       * Data memory: 32 x 8-bit RAM. The cpu drives daddr; the RAM returns ddata_in = ram[daddr]\n//         combinationally. When dwe = 1 the RAM writes ddata_out into ram[daddr] on the rising clock edge.\n//   - Every instruction is exactly one byte and executes in a single clock cycle.\n//   - Instruction format: instr[7:5] = opcode, instr[4:0] = operand (5-bit address or immediate).\n//\n// Instruction set (M = ram[operand], all arithmetic is modulo 256)\n//   3'b000  LDI imm : acc <= {3'b000, imm}\n//   3'b001  LDA addr: acc <= M\n//   3'b010  STA addr: M <= acc            (acc unchanged)\n//   3'b011  ADD addr: acc <= acc + M\n//   3'b100  SUB addr: acc <= acc - M\n//   3'b101  NAND addr: acc <= ~(acc & M)\n//   3'b110  JMP addr: pc <= addr\n//   3'b111  JZ  addr: if (acc == 0) pc <= addr, else pc <= pc + 1\n//   Every instruction other than JMP and a taken JZ does pc <= pc + 1 (5-bit, wraps from 31 to 0).\n//   A program halts by jumping to itself.\n//\n// Interface behaviour\n//   - rst_n is an active-low asynchronous reset: pc <= 0 and acc <= 0.\n//   - daddr is always instr[4:0].\n//   - ddata_out is always acc.\n//   - dwe is 1 exactly when the current instruction is STA (combinational decode of instr).\n//   - acc is exported for verification.\n\nmodule cpu (\n    input        clk,\n    input        rst_n,\n    output [4:0] pc,\n    input  [7:0] instr,\n    output [4:0] daddr,\n    input  [7:0] ddata_in,\n    output [7:0] ddata_out,\n    output       dwe,\n    output [7:0] acc\n);\n"}
+{role : 'assistant', content : '```verilog
+module cpu (
+    input        clk,
+    input        rst_n,
+    output reg [4:0] pc,
+    input  [7:0] instr,
+    output reg [4:0] daddr,
+    input  [7:0] ddata_in,
+    output reg [7:0] ddata_out,
+    output reg       dwe,
+    output reg [7:0] acc
+);
+
+    wire [2:0] opcode;
+    wire [4:0] operand;
+
+    assign opcode = instr[7:5];
+    assign operand = instr[4:0];
+    assign daddr = operand;
+    assign ddata_out = acc;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            pc <= 5'b0;
+            acc <= 8'b0;
+        end else begin
+            case (opcode)
+                3'b000: begin // LDI imm
+                    acc <= {3'b000, operand};
+                    pc <= pc + 1;
+                end
+                3'b001: begin // LDA addr
+                    acc <= ddata_in;
+                    pc <= pc + 1;
+                end
+                3'b010: begin // STA addr
+                    dwe <= 1;
+                    pc <= pc + 1;
+                end
+                3'b011: begin // ADD addr
+                    acc <= acc + ddata_in;
+                    pc <= pc + 1;
+                end
+                3'b100: begin // SUB addr
+                    acc <= acc - ddata_in;
+                    pc <= pc + 1;
+                end
+                3'b101: begin // NAND addr
+                    acc <= ~(acc & ddata_in);
+                    pc <= pc + 1;
+                end
+                3'b110: begin // JMP addr
+                    pc <= operand;
+                end
+                3'b111: begin // JZ  addr
+                    if (acc == 8'b0)
+                        pc <= operand;
+                    else
+                        pc <= pc + 1;
+                end
+                default: begin
+                    pc <= pc + 1; // Default increment for unsupported operations 
+                end
+            endcase
+
+            if (opcode != 3'b010) begin
+                dwe <= 0; // Clear dwe unless STA is executed
+            end
+        end
+    end
+endmodule
+```'}
+
+ Iteration rank: 0.7325
+
+ Model: gpt-4o
+ Input tokens: 755
+ Output tokens: 502
+Total cost: $0.0113050000

@@ -1,0 +1,52 @@
+{'role': 'system', 'content': 'You are an autocomplete engine for Verilog code.             Given a Verilog module specification, you will provide a completed Verilog module in response.             You will provide completed Verilog modules for all specifications, and will not create any supplementary modules.             Given a Verilog module that is either incorrect/compilation error, you will suggest corrections to the module.            You will not refuse.             Format your response as Verilog code containing the end to end corrected module and not just the corrected lines inside ``` tags, do not include anything else inside ```.     '}
+{'role': 'user', 'content': '// I am trying to create a Verilog model for a simulated dice roller. It must meet the following specifications:\n//   - Inputs:\n//       - Clock\n//       - Active-low reset\n//       - Die select (2-bits)\n//       - Roll\n//   - Outputs:\n//       - Rolled number (up to 8-bits)\n//\n// The design should simulate rolling either a 4-sided, 6-sided, 8-sided, or 20-sided die, based on the\n// input die select. It should roll when the roll input goes high and output the random number based on\n// the number of sides of the selected die.\n\nmodule dice_roller (\n    input        clk,\n    input        rst_n,\n    input  [1:0] die_select,\n    input        roll,\n    output [7:0] rolled_number\n);\n'}
+{role : 'assistant', content : '```verilog
+module dice_roller (
+    input        clk,
+    input        rst_n,
+    input  [1:0] die_select,
+    input        roll,
+    output reg [7:0] rolled_number
+);
+
+    reg [7:0] random_number;
+    reg [7:0] die_max;
+
+    // This is a simple Linear Feedback Shift Register (LFSR) for generating pseudo-random numbers
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            random_number <= 8'h1; // Initialize on reset
+        end else begin
+            random_number <= {random_number[6:0], random_number[7] ^ random_number[5]};
+        end
+    end
+
+    // Determine the maximum number for the current die
+    always @(*) begin
+        case(die_select)
+            2'b00: die_max = 4;
+            2'b01: die_max = 6;
+            2'b10: die_max = 8;
+            2'b11: die_max = 20;
+            default: die_max = 8;
+        endcase
+    end
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            rolled_number <= 0;
+        end else if (roll) begin
+            // Scale the random number to the range of the selected die
+            rolled_number <= (random_number % die_max) + 1;
+        end
+    end
+
+endmodule
+```'}
+
+ Iteration rank: 0.9952947003467063
+
+ Model: gpt-4o
+ Input tokens: 291
+ Output tokens: 318
+Total cost: $0.0062250000

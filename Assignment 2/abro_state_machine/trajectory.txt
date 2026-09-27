@@ -1,0 +1,100 @@
+Trajectory for abro_state_machine  (model gpt-4o, 5 candidates/iteration, max 5 feedback iterations)
+rank: 1.0 = all testbench samples pass, 0..1 = fraction passing, -0.5 = compile warnings, -1 = compile error, -2 = no module in response
+
+iter0: candidate ranks [0.1038961038961039, 0.24675324675324675, 0.1038961038961039, 0.24675324675324675, 0.18181818181818182] -> best 0.24675324675324675
+iter1: candidate ranks [0.24675324675324675, 0.3246753246753247, 0.24675324675324675, 0.19480519480519481, 0.3246753246753247] -> best 0.3246753246753247
+iter2: candidate ranks [0.24675324675324675, 0.24675324675324675, 0.09090909090909091, 0.24675324675324675, 0.14285714285714285] -> best 0.24675324675324675
+iter3: candidate ranks [0.19480519480519481, 0.19480519480519481, 0.19480519480519481, 0.24675324675324675, 0.19480519480519481] -> best 0.24675324675324675
+iter4: candidate ranks [0.19480519480519481, 0.19480519480519481, 0.19480519480519481, 0.3246753246753247, 0.18181818181818182] -> best 0.3246753246753247
+iter5: candidate ranks [0.19480519480519481, 0.24675324675324675, 0.3246753246753247, 0.19480519480519481, 0.3246753246753247] -> best 0.3246753246753247
+
+--- feedback sent after iteration 0 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: A=0 B=1 -> expected O=0 State=0001, got O=0 State=0100
+Error: A=1 B=0 -> expected O=0 State=0010, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=0 State=0001
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=0 State=0001
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=0 State=0001
+./abro_state_machine_tb.sv:59: $finish called at 786000 (1ps)
+Hint: Total mismatched samples is 58 out of 77 samples
+Mismatches: 58 in 77 samples
+--- feedback sent after iteration 1 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: A=0 B=1 -> expected O=0 State=0001, got O=0 State=0100
+Error: A=1 B=0 -> expected O=0 State=0010, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+./abro_state_machine_tb.sv:59: $finish called at 786000 (1ps)
+Hint: Total mismatched samples is 52 out of 77 samples
+Mismatches: 52 in 77 samples
+--- feedback sent after iteration 2 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: A=0 B=1 -> expected O=0 State=0001, got O=0 State=0100
+Error: A=1 B=0 -> expected O=0 State=0010, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=0 State=0001
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=0 State=0001
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=0 State=0001
+./abro_state_machine_tb.sv:59: $finish called at 786000 (1ps)
+Hint: Total mismatched samples is 58 out of 77 samples
+Mismatches: 58 in 77 samples
+--- feedback sent after iteration 3 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: A=0 B=1 -> expected O=0 State=0001, got O=0 State=0100
+Error: A=1 B=0 -> expected O=0 State=0010, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=0 State=0001
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=0 State=0001
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=0 State=0001
+./abro_state_machine_tb.sv:59: $finish called at 786000 (1ps)
+Hint: Total mismatched samples is 58 out of 77 samples
+Mismatches: 58 in 77 samples
+--- feedback sent after iteration 4 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: A=0 B=1 -> expected O=0 State=0001, got O=0 State=0100
+Error: A=1 B=0 -> expected O=0 State=0010, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+./abro_state_machine_tb.sv:59: $finish called at 786000 (1ps)
+Hint: Total mismatched samples is 52 out of 77 samples
+Mismatches: 52 in 77 samples
+--- feedback sent after iteration 5 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: A=0 B=1 -> expected O=0 State=0001, got O=0 State=0100
+Error: A=1 B=0 -> expected O=0 State=0010, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+Error: A=0 B=0 -> expected O=0 State=0100, got O=0 State=0001
+Error: A=0 B=1 -> expected O=0 State=0001, got O=1 State=1000
+Error: A=1 B=1 -> expected O=1 State=0100, got O=1 State=1000
+./abro_state_machine_tb.sv:59: $finish called at 786000 (1ps)
+Hint: Total mismatched samples is 52 out of 77 samples
+Mismatches: 52 in 77 samples

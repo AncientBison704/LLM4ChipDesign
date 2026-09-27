@@ -1,0 +1,16 @@
+// I am trying to create a Verilog model for a shift register. It must meet the following specifications:
+//   - Inputs:
+//       - Clock
+//       - Active-low reset
+//       - Data (1 bit)
+//       - Shift enable
+//   - Outputs:
+//       - Data (8 bits)
+
+module shift_register (
+    input        clk,
+    input        reset_n,
+    input        data_in,
+    input        shift_enable,
+    output [7:0] data_out
+);

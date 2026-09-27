@@ -1,0 +1,14 @@
+{
+    "general": {
+        "prompt": "./cpu_prompt.sv",
+        "name": "cpu",
+        "testbench": "./cpu_tb.sv",
+        "model_family": "ChatGPT",
+        "model_id": "gpt-4o",
+        "num_candidates": 5,
+        "iterations": 8,
+        "outdir": "outputs",
+        "log": "log.txt",
+        "ensemble": false
+    }
+}

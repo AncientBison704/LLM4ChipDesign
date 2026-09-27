@@ -1,0 +1,94 @@
+system: You are an autocomplete engine for Verilog code.             Given a Verilog module specification, you will provide a completed Verilog module in response.             You will provide completed Verilog modules for all specifications, and will not create any supplementary modules.             Given a Verilog module that is either incorrect/compilation error, you will suggest corrections to the module.            You will not refuse.             Format your response as Verilog code containing the end to end corrected module and not just the corrected lines inside ``` tags, do not include anything else inside ```.     
+user: // I am trying to create a Verilog model for a simulated dice roller. It must meet the following specifications:
+//   - Inputs:
+//       - Clock
+//       - Active-low reset
+//       - Die select (2-bits)
+//       - Roll
+//   - Outputs:
+//       - Rolled number (up to 8-bits)
+//
+// The design should simulate rolling either a 4-sided, 6-sided, 8-sided, or 20-sided die, based on the
+// input die select. It should roll when the roll input goes high and output the random number based on
+// the number of sides of the selected die.
+
+module dice_roller (
+    input        clk,
+    input        rst_n,
+    input  [1:0] die_select,
+    input        roll,
+    output [7:0] rolled_number
+);
+
+assistant: module dice_roller (
+    input        clk,
+    input        rst_n,
+    input  [1:0] die_select,
+    input        roll,
+    output reg [7:0] rolled_number
+);
+
+    reg [7:0] max_roll_value;
+
+    // Determine the maximum value for the selected die
+    always @(*) begin
+        case (die_select)
+            2'b00: max_roll_value = 8'd4;   // 4-sided die
+            2'b01: max_roll_value = 8'd6;   // 6-sided die
+            2'b10: max_roll_value = 8'd8;   // 8-sided die
+            2'b11: max_roll_value = 8'd20;  // 20-sided die
+            default: max_roll_value = 8'd0;
+        endcase
+    end
+
+    // Simulate the random roll
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            rolled_number <= 8'd0;
+        end
+        else if (roll) begin
+            rolled_number <= ($random % max_roll_value) + 1;
+        end
+    end
+
+endmodule
+
+
+Time to Generate: 4.918098449707031
+Best ranked response at iteration 0 with response number 0
+Rank of best response: 1.0
+Best response module:
+module dice_roller (
+    input        clk,
+    input        rst_n,
+    input  [1:0] die_select,
+    input        roll,
+    output reg [7:0] rolled_number
+);
+
+    reg [7:0] max_roll_value;
+
+    // Determine the maximum value for the selected die
+    always @(*) begin
+        case (die_select)
+            2'b00: max_roll_value = 8'd4;   // 4-sided die
+            2'b01: max_roll_value = 8'd6;   // 6-sided die
+            2'b10: max_roll_value = 8'd8;   // 8-sided die
+            2'b11: max_roll_value = 8'd20;  // 20-sided die
+            default: max_roll_value = 8'd0;
+        endcase
+    end
+
+    // Simulate the random roll
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            rolled_number <= 8'd0;
+        end
+        else if (roll) begin
+            rolled_number <= ($random % max_roll_value) + 1;
+        end
+    end
+
+endmodule
+
+

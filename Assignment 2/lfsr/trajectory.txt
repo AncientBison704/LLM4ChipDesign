@@ -1,0 +1,100 @@
+Trajectory for lfsr  (model gpt-4o, 5 candidates/iteration, max 5 feedback iterations)
+rank: 1.0 = all testbench samples pass, 0..1 = fraction passing, -0.5 = compile warnings, -1 = compile error, -2 = no module in response
+
+iter0: candidate ranks [0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876, -1.0, 0.0038910505836575876] -> best 0.0038910505836575876
+iter1: candidate ranks [0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876] -> best 0.0038910505836575876
+iter2: candidate ranks [0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876, 0.019455252918287938, 0.0038910505836575876] -> best 0.019455252918287938
+iter3: candidate ranks [0.007782101167315175, 0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876] -> best 0.007782101167315175
+iter4: candidate ranks [0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876, 0.0038910505836575876] -> best 0.0038910505836575876
+iter5: candidate ranks [0.0038910505836575876, 0.0038910505836575876, 0.027237354085603113, 0.0038910505836575876, 0.0038910505836575876] -> best 0.027237354085603113
+
+--- feedback sent after iteration 0 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: cycle 1 expected data=8'b00010101, got 8'b00010100
+Error: cycle 2 expected data=8'b00101011, got 8'b00101000
+Error: cycle 3 expected data=8'b01010111, got 8'b01010000
+Error: cycle 4 expected data=8'b10101110, got 8'b10100001
+Error: cycle 5 expected data=8'b01011100, got 8'b01000011
+Error: cycle 6 expected data=8'b10111000, got 8'b10000111
+Error: cycle 7 expected data=8'b01110000, got 8'b00001111
+Error: cycle 8 expected data=8'b11100000, got 8'b00011110
+Error: cycle 9 expected data=8'b11000000, got 8'b00111101
+Error: cycle 10 expected data=8'b10000001, got 8'b01111010
+./lfsr_tb.sv:38: $finish called at 2570000 (1ps)
+Hint: Total mismatched samples is 256 out of 257 samples
+Mismatches: 256 in 257 samples
+--- feedback sent after iteration 1 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: cycle 1 expected data=8'b00010101, got 8'b00010100
+Error: cycle 2 expected data=8'b00101011, got 8'b00101001
+Error: cycle 3 expected data=8'b01010111, got 8'b01010010
+Error: cycle 4 expected data=8'b10101110, got 8'b10100100
+Error: cycle 5 expected data=8'b01011100, got 8'b01001001
+Error: cycle 6 expected data=8'b10111000, got 8'b10010011
+Error: cycle 7 expected data=8'b01110000, got 8'b00100111
+Error: cycle 8 expected data=8'b11100000, got 8'b01001110
+Error: cycle 9 expected data=8'b11000000, got 8'b10011100
+Error: cycle 10 expected data=8'b10000001, got 8'b00111001
+./lfsr_tb.sv:38: $finish called at 2570000 (1ps)
+Hint: Total mismatched samples is 256 out of 257 samples
+Mismatches: 256 in 257 samples
+--- feedback sent after iteration 2 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: cycle 5 expected data=8'b01011100, got 8'b01011101
+Error: cycle 6 expected data=8'b10111000, got 8'b10111010
+Error: cycle 7 expected data=8'b01110000, got 8'b01110101
+Error: cycle 8 expected data=8'b11100000, got 8'b11101011
+Error: cycle 9 expected data=8'b11000000, got 8'b11010110
+Error: cycle 10 expected data=8'b10000001, got 8'b10101100
+Error: cycle 11 expected data=8'b00000011, got 8'b01011000
+Error: cycle 12 expected data=8'b00000111, got 8'b10110001
+Error: cycle 13 expected data=8'b00001111, got 8'b01100010
+Error: cycle 14 expected data=8'b00011110, got 8'b11000101
+./lfsr_tb.sv:38: $finish called at 2570000 (1ps)
+Hint: Total mismatched samples is 252 out of 257 samples
+Mismatches: 252 in 257 samples
+--- feedback sent after iteration 3 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: cycle 2 expected data=8'b00101011, got 8'b00101010
+Error: cycle 3 expected data=8'b01010111, got 8'b01010101
+Error: cycle 4 expected data=8'b10101110, got 8'b10101010
+Error: cycle 5 expected data=8'b01011100, got 8'b01010100
+Error: cycle 6 expected data=8'b10111000, got 8'b10101000
+Error: cycle 7 expected data=8'b01110000, got 8'b01010000
+Error: cycle 8 expected data=8'b11100000, got 8'b10100001
+Error: cycle 9 expected data=8'b11000000, got 8'b01000010
+Error: cycle 10 expected data=8'b10000001, got 8'b10000100
+Error: cycle 11 expected data=8'b00000011, got 8'b00001000
+./lfsr_tb.sv:38: $finish called at 2570000 (1ps)
+Hint: Total mismatched samples is 255 out of 257 samples
+Mismatches: 255 in 257 samples
+--- feedback sent after iteration 4 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: cycle 1 expected data=8'b00010101, got 8'b00010100
+Error: cycle 2 expected data=8'b00101011, got 8'b00101001
+Error: cycle 3 expected data=8'b01010111, got 8'b01010010
+Error: cycle 4 expected data=8'b10101110, got 8'b10100100
+Error: cycle 5 expected data=8'b01011100, got 8'b01001001
+Error: cycle 6 expected data=8'b10111000, got 8'b10010011
+Error: cycle 7 expected data=8'b01110000, got 8'b00100111
+Error: cycle 8 expected data=8'b11100000, got 8'b01001110
+Error: cycle 9 expected data=8'b11000000, got 8'b10011100
+Error: cycle 10 expected data=8'b10000001, got 8'b00111001
+./lfsr_tb.sv:38: $finish called at 2570000 (1ps)
+Hint: Total mismatched samples is 256 out of 257 samples
+Mismatches: 256 in 257 samples
+--- feedback sent after iteration 5 ---
+The testbench simulated, but had errors. Please fix the module. The output of iverilog is as follows:
+Error: cycle 7 expected data=8'b01110000, got 8'b01110001
+Error: cycle 8 expected data=8'b11100000, got 8'b11100011
+Error: cycle 9 expected data=8'b11000000, got 8'b11000111
+Error: cycle 10 expected data=8'b10000001, got 8'b10001110
+Error: cycle 11 expected data=8'b00000011, got 8'b00011101
+Error: cycle 12 expected data=8'b00000111, got 8'b00111011
+Error: cycle 13 expected data=8'b00001111, got 8'b01110110
+Error: cycle 14 expected data=8'b00011110, got 8'b11101101
+Error: cycle 15 expected data=8'b00111101, got 8'b11011011
+Error: cycle 16 expected data=8'b01111011, got 8'b10110111
+./lfsr_tb.sv:38: $finish called at 2570000 (1ps)
+Hint: Total mismatched samples is 250 out of 257 samples
+Mismatches: 250 in 257 samples

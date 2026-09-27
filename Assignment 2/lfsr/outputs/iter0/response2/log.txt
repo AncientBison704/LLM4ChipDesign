@@ -1,0 +1,35 @@
+{'role': 'system', 'content': 'You are an autocomplete engine for Verilog code.             Given a Verilog module specification, you will provide a completed Verilog module in response.             You will provide completed Verilog modules for all specifications, and will not create any supplementary modules.             Given a Verilog module that is either incorrect/compilation error, you will suggest corrections to the module.            You will not refuse.             Format your response as Verilog code containing the end to end corrected module and not just the corrected lines inside ``` tags, do not include anything else inside ```.     '}
+{'role': 'user', 'content': '// I am trying to create a Verilog model for an LFSR. It must meet the following specifications:\n//   - Inputs:\n//       - Clock\n//       - Active-low reset\n//   - Outputs:\n//       - Data (8-bits)\n//\n// The initial state should be 10001010, and the taps should be at locations 1, 4, 6, and 7.\n\nmodule lfsr (\n    input        clk,\n    input        reset_n,\n    output [7:0] data\n);\n'}
+{role : 'assistant', content : '```verilog
+module lfsr (
+    input        clk,
+    input        reset_n,
+    output reg [7:0] data
+);
+
+    // Place to store the internal state for feedback computation
+    reg [7:0] state;
+
+    always @(posedge clk or negedge reset_n) begin
+        if (!reset_n) begin
+            // Initialize the LFSR to 10001010 on reset
+            state <= 8'b10001010;
+        end else begin
+            // Compute the feedback from the taps at locations 1, 4, 6, and 7
+            // using the polynomial x^8 + x^7 + x^6 + x^4 + 1
+            state <= {state[6:0], state[7] ^ state[5] ^ state[3] ^ state[2]};
+        end
+    end
+
+    // Output the state as data
+    assign data = state;
+
+endmodule
+```'}
+
+ Iteration rank: 0.0038910505836575876
+
+ Model: gpt-4o
+ Input tokens: 224
+ Output tokens: 199
+Total cost: $0.0041050000
