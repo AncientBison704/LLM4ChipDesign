@@ -1,0 +1,62 @@
+[
+  {
+    "binary_input": 0,
+    "expected_outputs": {
+      "bcd_output": 0
+    }
+  },
+  {
+    "binary_input": 1,
+    "expected_outputs": {
+      "bcd_output": 1
+    }
+  },
+  {
+    "binary_input": 10,
+    "expected_outputs": {
+      "bcd_output": 16
+    }
+  },
+  {
+    "binary_input": 31,
+    "expected_outputs": {
+      "bcd_output": 49
+    }
+  },
+  {
+    "binary_input": 21,
+    "expected_outputs": {
+      "bcd_output": 33
+    }
+  },
+  {
+    "binary_input": 15,
+    "expected_outputs": {
+      "bcd_output": 21
+    }
+  },
+  {
+    "binary_input": 14,
+    "expected_outputs": {
+      "bcd_output": 20
+    }
+  },
+  {
+    "binary_input": 30,
+    "expected_outputs": {
+      "bcd_output": 48
+    }
+  },
+  {
+    "binary_input": 3,
+    "expected_outputs": {
+      "bcd_output": 3
+    }
+  },
+  {
+    "binary_input": 19,
+    "expected_outputs": {
+      "bcd_output": 25
+    }
+  }
+]
