@@ -1,0 +1,62 @@
+TOGGLE COVERAGE MISSES (signal bits that never changed in the given direction):
+  - tb_adder8.dut.a: never 1->0 on bit(s) 5
+  - tb_adder8.dut.b: never 0->1 on bit(s) 7; never 1->0 on bit(s) 2,7
+  - tb_adder8.dut.cin: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.sum: never 1->0 on bit(s) 2
+  - tb_adder8.dut.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.a: never 1->0 on bit(s) 1
+  - tb_adder8.dut.adder_high.b: never 0->1 on bit(s) 3; never 1->0 on bit(s) 3
+  - tb_adder8.dut.adder_high.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.c3: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.b: never 1->0 on bit(s) 2
+  - tb_adder8.dut.adder_low.cin: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.sum: never 1->0 on bit(s) 2
+  - tb_adder8.dut.adder_high.fa0.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa1.a: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa1.c1: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.c1: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.b: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.cin: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.c1: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.cin: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa2.b: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa2.sum: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa0.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa1.ha1.a: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa1.ha1.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.ha1.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.ha1.b: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.ha1.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.ha2.b: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.ha2.b: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa2.ha1.b: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa2.ha2.sum: never 1->0 on bit(s) 0
+COMBINATIONAL LOGIC COVERAGE MISSES (expression input combinations never seen; values are the operand bits left-to-right, '-' = don't care):
+  - tb_adder8.dut.adder_high.fa0 line 18: `assign cout = c1 | c2` hit 2/3; missed: -1
+  - tb_adder8.dut.adder_high.fa1 line 18: `assign cout = c1 | c2` hit 2/3; missed: 1-
+  - tb_adder8.dut.adder_high.fa2 line 18: `assign cout = c1 | c2` hit 1/3; missed: 1-, -1
+  - tb_adder8.dut.adder_high.fa3 line 18: `assign cout = c1 | c2` hit 1/3; missed: 1-, -1
+  - tb_adder8.dut.adder_low.fa0 line 18: `assign cout = c1 | c2` hit 2/3; missed: -1
+  - tb_adder8.dut.adder_high.fa0.ha2 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_high.fa0.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa1.ha1 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_high.fa1.ha1 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa1.ha2 line 2: `assign sum = a ^ b` hit 3/4; missed: 01
+  - tb_adder8.dut.adder_high.fa2.ha1 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_high.fa2.ha1 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa2.ha2 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_high.fa2.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa3.ha1 line 2: `assign sum = a ^ b` hit 2/4; missed: 01, 11
+  - tb_adder8.dut.adder_high.fa3.ha1 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa3.ha2 line 2: `assign sum = a ^ b` hit 2/4; missed: 01, 11
+  - tb_adder8.dut.adder_high.fa3.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_low.fa0.ha2 line 2: `assign sum = a ^ b` hit 2/4; missed: 01, 11
+  - tb_adder8.dut.adder_low.fa0.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11

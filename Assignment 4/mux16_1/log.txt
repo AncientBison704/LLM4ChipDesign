@@ -1,0 +1,118 @@
+system: You are an autocomplete engine for Verilog code. Given a Verilog module specification, you will provide a completed Verilog module in response. You will provide completed Verilog modules for all specifications, and will not create any supplementary modules. Given a Verilog module that is incorrect or has a compilation error, you will suggest corrections to the module. You will not refuse. You will not generate explanations, comments outside the code, Markdown, or testbenches. IMPORTANT: Output ONLY the Verilog code for the requested module. Do NOT repeat any previous modules. Do NOT wrap the code in triple backticks. Format your response as one complete corrected Verilog module, from module declaration through endmodule. Use Verilog-2001 only unless explicitly told otherwise.
+user: The following is the testbench that will be used to compile/simulate your module. Do NOT generate a testbench or modify it. Only use it to ensure your module compiles and passes.
+
+```verilog
+`timescale 1ns / 1ps
+
+module testbench;
+
+// Testbench signals
+reg [3:0] sel;
+reg [15:0] in;
+wire out;
+
+// Instantiate the mux16_1 module
+mux16_1 uut (
+    .sel(sel),
+    .in(in),
+    .out(out)
+);
+
+// Test procedure
+initial begin
+    // Initialize inputs
+    sel = 0;
+    in = 16'b1100_1010_1111_0001; // Example input pattern
+
+    // Run test cases for each select signal
+    #10 sel = 4'b0000; // Test 0
+    #10 if (out == in[0]) $display("Test 0 passed");
+    
+    #10 sel = 4'b0001; // Test 1
+    #10 if (out == in[1]) $display("Test 1 passed");
+
+    #10 sel = 4'b0010; // Test 2
+    #10 if (out == in[2]) $display("Test 2 passed");
+
+    #10 sel = 4'b0011; // Test 3
+    #10 if (out == in[3]) $display("Test 3 passed");
+
+    #10 sel = 4'b0100; // Test 4
+    #10 if (out == in[4]) $display("Test 4 passed");
+
+    #10 sel = 4'b0101; // Test 5
+    #10 if (out == in[5]) $display("Test 5 passed");
+
+    #10 sel = 4'b0110; // Test 6
+    #10 if (out == in[6]) $display("Test 6 passed");
+
+    #10 sel = 4'b0111; // Test 7
+    #10 if (out == in[7]) $display("Test 7 passed");
+
+    #10 sel = 4'b1000; // Test 8
+    #10 if (out == in[8]) $display("Test 8 passed");
+
+    #10 sel = 4'b1001; // Test 9
+    #10 if (out == in[9]) $display("Test 9 passed");
+
+    #10 sel = 4'b1010; // Test 10
+    #10 if (out == in[10]) $display("Test 10 passed");
+
+    #10 sel = 4'b1011; // Test 11
+    #10 if (out == in[11]) $display("Test 11 passed");
+
+    #10 sel = 4'b1100; // Test 12
+    #10 if (out == in[12]) $display("Test 12 passed");
+
+    #10 sel = 4'b1101; // Test 13
+    #10 if (out == in[13]) $display("Test 13 passed");
+
+    #10 sel = 4'b1110; // Test 14
+    #10 if (out == in[14]) $display("Test 14 passed");
+
+    #10 sel = 4'b1111; // Test 15
+    #10 if (out == in[15]) $display("Test 15 passed!");
+
+    // End of tests
+    #10 $finish;
+end
+
+endmodule
+
+
+```
+
+user: // We are generating a 64-to-1 multiplexer hierarchically in Verilog.
+// Use Verilog-2001 only.
+
+// Previously generated modules are shown below for reference only.
+// You may instantiate them, but you must NOT repeat their definitions.
+
+// File: ./mux2_1/mux2_1.v
+module mux2_1(input wire in1, input wire in2, input wire select, output wire out);
+endmodule
+
+// File: ./mux4_1/mux4_1.v
+module mux4_1(input [1:0] sel, input [3:0] in, output reg out);
+endmodule
+
+// File: ./mux8_1/mux8_1.v
+module mux8_1(input [2:0] sel, input [7:0] in, output wire out);
+endmodule
+
+// IMPORTANT: Output ONLY the new module requested below.
+// Do NOT repeat any previous modules.
+// Do NOT generate explanations, Markdown fences, or a testbench.
+// Now generate: 16-to-1 multiplexer
+
+module mux16_1(input [3:0] sel, input [15:0] in, output reg out);
+// Insert code here
+endmodule
+
+assistant: module mux16_1(input [3:0] sel, input [15:0] in, output wire out);
+    wire out1, out2;
+
+    mux8_1 mux_first(.sel(sel[2:0]), .in(in[7:0]), .out(out1));
+    mux8_1 mux_second(.sel(sel[2:0]), .in(in[15:8]), .out(out2));
+    mux2_1 mux_final (.in1(out1), .in2(out2), .select(sel[3]), .out(out));
+endmodule

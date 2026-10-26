@@ -1,0 +1,20 @@
+
+11. Printing statistics.
+
+=== mux32_1 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       93 wires
+      134 wire bits
+        3 public wires
+       38 public wire bits
+        3 ports
+       38 port bits
+       93 cells
+       32   $_MUX_
+        5   $_NOT_
+       56   $_OR_
+
+   Estimated number of transistors:        730
+

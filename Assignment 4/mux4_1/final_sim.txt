@@ -1,0 +1,7 @@
+iverilog -o ./mux4_1/mux4_1_final ./mux4_1/mux4_1__combined.v ./mux4_1tb.v
+vvp ./mux4_1/mux4_1_final
+Test 0 passed
+Test 1 passed
+Test 2 passed
+Test 3 passed!
+./mux4_1tb.v:40: $finish called at 90000 (1ps)

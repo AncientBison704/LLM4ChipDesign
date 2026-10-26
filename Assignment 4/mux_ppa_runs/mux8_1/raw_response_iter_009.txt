@@ -1,0 +1,4 @@
+module mux8_1(input [2:0] sel, input [7:0] in, output out);
+  wire [7:0] mask = 8'b00000001 << sel;
+  assign out = |(in & mask);
+endmodule

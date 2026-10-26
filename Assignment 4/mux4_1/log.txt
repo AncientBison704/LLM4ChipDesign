@@ -1,0 +1,81 @@
+system: You are an autocomplete engine for Verilog code. Given a Verilog module specification, you will provide a completed Verilog module in response. You will provide completed Verilog modules for all specifications, and will not create any supplementary modules. Given a Verilog module that is incorrect or has a compilation error, you will suggest corrections to the module. You will not refuse. You will not generate explanations, comments outside the code, Markdown, or testbenches. IMPORTANT: Output ONLY the Verilog code for the requested module. Do NOT repeat any previous modules. Do NOT wrap the code in triple backticks. Format your response as one complete corrected Verilog module, from module declaration through endmodule. Use Verilog-2001 only unless explicitly told otherwise.
+user: The following is the testbench that will be used to compile/simulate your module. Do NOT generate a testbench or modify it. Only use it to ensure your module compiles and passes.
+
+```verilog
+`timescale 1ns / 1ps
+
+module testbench;
+
+// Testbench signals
+reg [1:0] sel;
+reg [3:0] in;
+wire out;
+
+// Instantiate the mux4_1 module
+mux4_1 uut (
+    .sel(sel),
+    .in(in),
+    .out(out)
+);
+
+// Test procedure
+initial begin
+    // Initialize inputs
+    sel = 0;
+    in = 4'b1010; // Example input pattern
+
+    // Test 0: sel = 00, expected output: in[0]
+    #10 sel = 2'b00;
+    #10 if (out == in[0]) $display("Test 0 passed");
+
+    // Test 1: sel = 01, expected output: in[1]
+    #10 sel = 2'b01;
+    #10 if (out == in[1]) $display("Test 1 passed");
+
+    // Test 2: sel = 10, expected output: in[2]
+    #10 sel = 2'b10;
+    #10 if (out == in[2]) $display("Test 2 passed");
+
+    // Test 3: sel = 11, expected output: in[3]
+    #10 sel = 2'b11;
+    #10 if (out == in[3]) $display("Test 3 passed!");
+
+    // End of tests
+    #10 $finish;
+end
+
+endmodule
+
+
+```
+
+user: // We are generating a 64-to-1 multiplexer hierarchically in Verilog.
+// Use Verilog-2001 only.
+
+// Previously generated modules are shown below for reference only.
+// You may instantiate them, but you must NOT repeat their definitions.
+
+// File: ./mux2_1/mux2_1.v
+module mux2_1(input wire in1, input wire in2, input wire select, output wire out);
+endmodule
+
+// IMPORTANT: Output ONLY the new module requested below.
+// Do NOT repeat any previous modules.
+// Do NOT generate explanations, Markdown fences, or a testbench.
+// Now generate: 4-to-1 multiplexer
+
+module mux4_1(input [1:0] sel, input [3:0] in, output reg out);
+// Insert code here
+endmodule
+
+assistant: module mux4_1(input [1:0] sel, input [3:0] in, output reg out);
+    always @(*) begin
+        case (sel)
+            2'b00: out = in[0];
+            2'b01: out = in[1];
+            2'b10: out = in[2];
+            2'b11: out = in[3];
+            default: out = 1'b0;
+        endcase
+    end
+endmodule

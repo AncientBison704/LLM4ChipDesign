@@ -1,0 +1,160 @@
+system: You are an autocomplete engine for Verilog code. Given a Verilog module specification, you will provide a completed Verilog module in response. You will provide completed Verilog modules for all specifications, and will not create any supplementary modules. Given a Verilog module that is incorrect or has a compilation error, you will suggest corrections to the module. You will not refuse. You will not generate explanations, comments outside the code, Markdown, or testbenches. IMPORTANT: Output ONLY the Verilog code for the requested module. Do NOT repeat any previous modules. Do NOT wrap the code in triple backticks. Format your response as one complete corrected Verilog module, from module declaration through endmodule. Use Verilog-2001 only unless explicitly told otherwise.
+user: The following is the testbench that will be used to compile/simulate your module. Do NOT generate a testbench or modify it. Only use it to ensure your module compiles and passes.
+
+```verilog
+`timescale 1ns/1ps
+
+module tb_mux64_1;
+
+  reg  [5:0]  sel;
+  reg  [63:0] in;
+  wire        out;
+
+  // DUT
+  mux64_1 dut (
+    .sel(sel),
+    .in (in),
+    .out(out)
+  );
+
+  integer testnum;
+  integer fail_count;
+  reg expected;
+
+  task run_test;
+    input integer tnum;
+    input [63:0]  in_vec;
+    input [5:0]   sel_val;
+    reg           exp;
+    begin
+      // Apply inputs
+      in  = in_vec;
+      sel = sel_val;
+
+      // Allow combinational logic to settle
+      #1;
+
+      // Expected value
+      exp = in_vec[sel_val];
+
+      // Check
+      if (out === exp) begin
+        $display("Test %0d passed", tnum);
+      end else begin
+        $display("Test %0d failed (sel=%0d, in=0x%016h, expected=%0b, got=%0b)",
+                 tnum, sel_val, in_vec, exp, out);
+        fail_count = fail_count + 1;
+      end
+    end
+  endtask
+
+  initial begin
+    // Initialize
+    sel        = 6'd0;
+    in         = 64'd0;
+    testnum    = 0;
+    fail_count = 0;
+
+    // Test 1: all zeros
+    testnum = testnum + 1;
+    run_test(testnum, 64'h0000_0000_0000_0000, 6'd0);
+
+    // Test 2: all ones
+    testnum = testnum + 1;
+    run_test(testnum, 64'hFFFF_FFFF_FFFF_FFFF, 6'd37);
+
+    // Test 3: LSB set
+    testnum = testnum + 1;
+    run_test(testnum, 64'h0000_0000_0000_0001, 6'd0);
+
+    // Test 4: MSB set
+    testnum = testnum + 1;
+    run_test(testnum, 64'h8000_0000_0000_0000, 6'd63);
+
+    // Test 5–6: alternating pattern
+    testnum = testnum + 1;
+    run_test(testnum, 64'hAAAA_AAAA_AAAA_AAAA, 6'd1);
+    testnum = testnum + 1;
+    run_test(testnum, 64'hAAAA_AAAA_AAAA_AAAA, 6'd2);
+
+    // Test 7–9: mixed pattern
+    testnum = testnum + 1;
+    run_test(testnum, 64'h0123_4567_89AB_CDEF, 6'd4);
+    testnum = testnum + 1;
+    run_test(testnum, 64'h0123_4567_89AB_CDEF, 6'd31);
+    testnum = testnum + 1;
+    run_test(testnum, 64'h0123_4567_89AB_CDEF, 6'd60);
+
+    // Final summary
+    if (fail_count == 0) begin
+      $display("All tests passed!");
+    end else begin
+      $display("%0d test(s) failed.", fail_count);
+    end
+
+    $finish;
+  end
+
+endmodule
+
+```
+
+user: // We are generating a 64-to-1 multiplexer hierarchically in Verilog.
+// Use Verilog-2001 only.
+
+// Previously generated modules are shown below for reference only.
+// You may instantiate them, but you must NOT repeat their definitions.
+
+// File: ./mux2_1/mux2_1.v
+module mux2_1(input wire in1, input wire in2, input wire select, output wire out);
+endmodule
+
+// File: ./mux4_1/mux4_1.v
+module mux4_1(input [1:0] sel, input [3:0] in, output reg out);
+endmodule
+
+// File: ./mux8_1/mux8_1.v
+module mux8_1(input [2:0] sel, input [7:0] in, output wire out);
+endmodule
+
+// File: ./mux16_1/mux16_1.v
+module mux16_1(input [3:0] sel, input [15:0] in, output wire out);
+endmodule
+
+// File: ./mux32_1/mux32_1.v
+module mux32_1(input [4:0] sel, input [31:0] in, output wire out);
+endmodule
+
+// IMPORTANT: Output ONLY the new module requested below.
+// Do NOT repeat any previous modules.
+// Do NOT generate explanations, Markdown fences, or a testbench.
+// Now generate: 64-to-1 multiplexer
+
+module mux64_1(input [5:0] sel, input [63:0] in, output reg out);
+// Insert code here
+endmodule
+
+assistant: module mux64_1(input [5:0] sel, input [63:0] in, output wire out);
+
+  wire out0, out1;
+
+  mux32_1 mux32_1_0 (
+    .sel(sel[4:0]),
+    .in(in[31:0]),
+    .out(out0)
+  );
+
+  mux32_1 mux32_1_1 (
+    .sel(sel[4:0]),
+    .in(in[63:32]),
+    .out(out1)
+  );
+
+  mux2_1 mux2_1_0 (
+    .in1(out0),
+    .in2(out1),
+    .select(sel[5]),
+    .out(out)
+  );
+
+endmodule

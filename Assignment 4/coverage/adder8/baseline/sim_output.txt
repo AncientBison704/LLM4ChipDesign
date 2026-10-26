@@ -1,0 +1,11 @@
+VCD info: dumpfile ./coverage/adder8/baseline/adder8_raw.vcd opened for output.
+Test 1 passed (a=00 b=00 cin=0 sum=00 cout=0)
+Test 2 passed (a=01 b=01 cin=0 sum=02 cout=0)
+Test 3 passed (a=0f b=01 cin=0 sum=10 cout=0)
+Test 4 passed (a=55 b=2a cin=0 sum=7f cout=0)
+Test 5 passed (a=12 b=34 cin=0 sum=46 cout=0)
+Test 6 passed (a=80 b=7f cin=0 sum=ff cout=0)
+Test 7 passed (a=0f b=0f cin=0 sum=1e cout=0)
+Test 8 passed (a=33 b=44 cin=0 sum=77 cout=0)
+All tests passed!
+./coverage/adder8/tb_iter_0.v:51: $finish called at 80000 (1ps)

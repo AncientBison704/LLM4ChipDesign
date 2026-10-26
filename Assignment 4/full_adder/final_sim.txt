@@ -1,0 +1,9 @@
+iverilog -o ./full_adder/full_adder_final ./half_adder/half_adder.v ./full_adder/full_adder.v ./adder_tb/full_adder_tb.v
+vvp ./full_adder/full_adder_final
+Test 1 passed (a=0 b=0 cin=0 sum=0 cout=0)
+Test 2 passed (a=0 b=1 cin=0 sum=1 cout=0)
+Test 3 passed (a=1 b=0 cin=0 sum=1 cout=0)
+Test 4 passed (a=1 b=1 cin=0 sum=0 cout=1)
+Test 5 passed (a=1 b=1 cin=1 sum=1 cout=1)
+All tests passed!
+./adder_tb/full_adder_tb.v:45: $finish called at 50000 (1ps)

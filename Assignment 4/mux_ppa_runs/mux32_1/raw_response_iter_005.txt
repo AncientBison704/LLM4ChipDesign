@@ -1,0 +1,34 @@
+module mux32_1(input [4:0] sel, input [31:0] in, output out);
+    assign out = (sel == 5'd0)  ? in[0] :
+                 (sel == 5'd1)  ? in[1] :
+                 (sel == 5'd2)  ? in[2] :
+                 (sel == 5'd3)  ? in[3] :
+                 (sel == 5'd4)  ? in[4] :
+                 (sel == 5'd5)  ? in[5] :
+                 (sel == 5'd6)  ? in[6] :
+                 (sel == 5'd7)  ? in[7] :
+                 (sel == 5'd8)  ? in[8] :
+                 (sel == 5'd9)  ? in[9] :
+                 (sel == 5'd10) ? in[10] :
+                 (sel == 5'd11) ? in[11] :
+                 (sel == 5'd12) ? in[12] :
+                 (sel == 5'd13) ? in[13] :
+                 (sel == 5'd14) ? in[14] :
+                 (sel == 5'd15) ? in[15] :
+                 (sel == 5'd16) ? in[16] :
+                 (sel == 5'd17) ? in[17] :
+                 (sel == 5'd18) ? in[18] :
+                 (sel == 5'd19) ? in[19] :
+                 (sel == 5'd20) ? in[20] :
+                 (sel == 5'd21) ? in[21] :
+                 (sel == 5'd22) ? in[22] :
+                 (sel == 5'd23) ? in[23] :
+                 (sel == 5'd24) ? in[24] :
+                 (sel == 5'd25) ? in[25] :
+                 (sel == 5'd26) ? in[26] :
+                 (sel == 5'd27) ? in[27] :
+                 (sel == 5'd28) ? in[28] :
+                 (sel == 5'd29) ? in[29] :
+                 (sel == 5'd30) ? in[30] :
+                                  in[31];
+endmodule

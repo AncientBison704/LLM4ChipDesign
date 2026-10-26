@@ -1,0 +1,5 @@
+module mux16_1(input [3:0] sel, input [15:0] in, output out);
+    wire [15:0] mask;
+    assign mask = 1 << sel;
+    assign out = |(in & mask);
+endmodule

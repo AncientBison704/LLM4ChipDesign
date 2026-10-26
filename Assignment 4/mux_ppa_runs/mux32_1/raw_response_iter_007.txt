@@ -1,0 +1,22 @@
+module mux32_1(input [4:0] sel, input [31:0] in, output out);
+    wire [15:0] mid;
+
+    assign mid[0] = sel[4] ? in[16] : in[0];
+    assign mid[1] = sel[4] ? in[17] : in[1];
+    assign mid[2] = sel[4] ? in[18] : in[2];
+    assign mid[3] = sel[4] ? in[19] : in[3];
+    assign mid[4] = sel[4] ? in[20] : in[4];
+    assign mid[5] = sel[4] ? in[21] : in[5];
+    assign mid[6] = sel[4] ? in[22] : in[6];
+    assign mid[7] = sel[4] ? in[23] : in[7];
+    assign mid[8] = sel[4] ? in[24] : in[8];
+    assign mid[9] = sel[4] ? in[25] : in[9];
+    assign mid[10] = sel[4] ? in[26] : in[10];
+    assign mid[11] = sel[4] ? in[27] : in[11];
+    assign mid[12] = sel[4] ? in[28] : in[12];
+    assign mid[13] = sel[4] ? in[29] : in[13];
+    assign mid[14] = sel[4] ? in[30] : in[14];
+    assign mid[15] = sel[4] ? in[31] : in[15];
+    
+    assign out = mid[sel[3:0]];
+endmodule

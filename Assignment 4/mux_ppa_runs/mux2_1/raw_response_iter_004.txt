@@ -1,0 +1,7 @@
+module mux2_1(input wire in1, input wire in2, input wire select, output wire out);
+    wire n_select, in1_selected, in2_selected;
+    not(n_select, select);
+    and(in1_selected, in1, n_select);
+    and(in2_selected, in2, select);
+    or(out, in1_selected, in2_selected);
+endmodule

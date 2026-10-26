@@ -1,0 +1,4 @@
+module mux8_1(input [2:0] sel, input [7:0] in, output out);
+  wire [7:0] tmp = {in[7], in[6], in[5], in[4], in[3], in[2], in[1], in[0]};
+  assign out = tmp[sel];
+endmodule

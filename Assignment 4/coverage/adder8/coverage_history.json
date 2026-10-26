@@ -1,0 +1,107 @@
+[
+  {
+    "iteration": "Baseline",
+    "tests": 8,
+    "sim_passed": true,
+    "line_pct": 100,
+    "line": {
+      "hit": 40,
+      "miss": 0,
+      "total": 40,
+      "pct": 100
+    },
+    "toggle01_pct": 85,
+    "toggle01": {
+      "hit": 160,
+      "miss": 29,
+      "total": 189,
+      "pct": 85
+    },
+    "toggle10_pct": 78,
+    "toggle10": {
+      "hit": 148,
+      "miss": 41,
+      "total": 189,
+      "pct": 78
+    },
+    "logic_pct": 82,
+    "logic": {
+      "hit": 111,
+      "miss": 25,
+      "total": 136,
+      "pct": 82
+    },
+    "testbench": "./coverage/adder8/tb_iter_0.v",
+    "report_dir": "./coverage/adder8/baseline"
+  },
+  {
+    "iteration": "Refine 1",
+    "tests": 14,
+    "sim_passed": true,
+    "line_pct": 100,
+    "line": {
+      "hit": 40,
+      "miss": 0,
+      "total": 40,
+      "pct": 100
+    },
+    "toggle01_pct": 98,
+    "toggle01": {
+      "hit": 185,
+      "miss": 4,
+      "total": 189,
+      "pct": 98
+    },
+    "toggle10_pct": 98,
+    "toggle10": {
+      "hit": 185,
+      "miss": 4,
+      "total": 189,
+      "pct": 98
+    },
+    "logic_pct": 96,
+    "logic": {
+      "hit": 130,
+      "miss": 6,
+      "total": 136,
+      "pct": 96
+    },
+    "testbench": "./coverage/adder8/tb_iter_1.v",
+    "report_dir": "./coverage/adder8/refine_1"
+  },
+  {
+    "iteration": "Refine 2",
+    "tests": 24,
+    "sim_passed": true,
+    "line_pct": 100,
+    "line": {
+      "hit": 40,
+      "miss": 0,
+      "total": 40,
+      "pct": 100
+    },
+    "toggle01_pct": 100,
+    "toggle01": {
+      "hit": 189,
+      "miss": 0,
+      "total": 189,
+      "pct": 100
+    },
+    "toggle10_pct": 100,
+    "toggle10": {
+      "hit": 189,
+      "miss": 0,
+      "total": 189,
+      "pct": 100
+    },
+    "logic_pct": 100,
+    "logic": {
+      "hit": 136,
+      "miss": 0,
+      "total": 136,
+      "pct": 100
+    },
+    "testbench": "./coverage/adder8/tb_iter_2.v",
+    "report_dir": "./coverage/adder8/refine_2"
+  }
+]

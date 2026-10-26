@@ -1,0 +1,7 @@
+module mux16_1(input [3:0] sel, input [15:0] in, output wire out);
+    wire out1, out2;
+
+    mux8_1 mux_first(.sel(sel[2:0]), .in(in[7:0]), .out(out1));
+    mux8_1 mux_second(.sel(sel[2:0]), .in(in[15:8]), .out(out2));
+    mux2_1 mux_final (.in1(out1), .in2(out2), .select(sel[3]), .out(out));
+endmodule

@@ -1,0 +1,5 @@
+module mux32_1(input [4:0] sel, input [31:0] in, output out);
+    wire [31:0] masked;
+    assign masked = in & (32'h1 << sel);
+    assign out = |masked;
+endmodule

@@ -1,0 +1,12 @@
+TOGGLE COVERAGE MISSES (signal bits that never changed in the given direction):
+  - tb_adder8.dut.adder_high.fa0.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa0.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+COMBINATIONAL LOGIC COVERAGE MISSES (expression input combinations never seen; values are the operand bits left-to-right, '-' = don't care):
+  - tb_adder8.dut.adder_high.fa0 line 18: `assign cout = c1 | c2` hit 2/3; missed: -1
+  - tb_adder8.dut.adder_low.fa0 line 18: `assign cout = c1 | c2` hit 2/3; missed: -1
+  - tb_adder8.dut.adder_high.fa0.ha2 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_high.fa0.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_low.fa0.ha2 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_low.fa0.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11

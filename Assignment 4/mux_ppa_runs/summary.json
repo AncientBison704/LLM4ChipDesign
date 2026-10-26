@@ -1,0 +1,134 @@
+{
+  "mux2_1": {
+    "best_file": "./mux_ppa_runs/mux2_1/mux2_1_best.v",
+    "best_metrics": {
+      "num_wires": 4,
+      "num_wire_bits": 4,
+      "num_public_wires": 4,
+      "num_public_wire_bits": 4,
+      "num_memories": null,
+      "num_memory_bits": null,
+      "num_processes": null,
+      "num_cells": 1,
+      "transistor_est": 12.0,
+      "area_cmos": 12.0,
+      "timing_proxy": null,
+      "power_proxy": 12.0
+    },
+    "best_iteration": 0,
+    "iterations": 10,
+    "total_time": 14.316860914230347,
+    "generation_time": 11.915020942687988,
+    "error_handling_time": 2.4018313884735107
+  },
+  "mux4_1": {
+    "best_file": "./mux_ppa_runs/mux4_1/mux4_1_best.v",
+    "best_metrics": {
+      "num_wires": 4,
+      "num_wire_bits": 11,
+      "num_public_wires": 3,
+      "num_public_wire_bits": 7,
+      "num_memories": null,
+      "num_memory_bits": null,
+      "num_processes": null,
+      "num_cells": 3,
+      "transistor_est": 36.0,
+      "area_cmos": 36.0,
+      "timing_proxy": null,
+      "power_proxy": 36.0
+    },
+    "best_iteration": 2,
+    "iterations": 10,
+    "total_time": 18.155627250671387,
+    "generation_time": 16.24450421333313,
+    "error_handling_time": 1.9111127853393555
+  },
+  "mux8_1": {
+    "best_file": "./mux_ppa_runs/mux8_1/mux8_1_best.v",
+    "best_metrics": {
+      "num_wires": 5,
+      "num_wire_bits": 28,
+      "num_public_wires": 3,
+      "num_public_wire_bits": 12,
+      "num_memories": null,
+      "num_memory_bits": null,
+      "num_processes": null,
+      "num_cells": 7,
+      "transistor_est": 84.0,
+      "area_cmos": 84.0,
+      "timing_proxy": null,
+      "power_proxy": 84.0
+    },
+    "best_iteration": 1,
+    "iterations": 10,
+    "total_time": 15.955044269561768,
+    "generation_time": 13.285353899002075,
+    "error_handling_time": 2.6696808338165283
+  },
+  "mux16_1": {
+    "best_file": "./mux_ppa_runs/mux16_1/mux16_1_best.v",
+    "best_metrics": {
+      "num_wires": 6,
+      "num_wire_bits": 69,
+      "num_public_wires": 3,
+      "num_public_wire_bits": 21,
+      "num_memories": null,
+      "num_memory_bits": null,
+      "num_processes": null,
+      "num_cells": 15,
+      "transistor_est": 180.0,
+      "area_cmos": 180.0,
+      "timing_proxy": null,
+      "power_proxy": 180.0
+    },
+    "best_iteration": 1,
+    "iterations": 10,
+    "total_time": 19.662173748016357,
+    "generation_time": 17.020402193069458,
+    "error_handling_time": 2.6417617797851562
+  },
+  "mux32_1": {
+    "best_file": "./mux_ppa_runs/mux32_1/mux32_1_best.v",
+    "best_metrics": {
+      "num_wires": 8,
+      "num_wire_bits": 198,
+      "num_public_wires": 3,
+      "num_public_wire_bits": 38,
+      "num_memories": null,
+      "num_memory_bits": null,
+      "num_processes": null,
+      "num_cells": 31,
+      "transistor_est": 372.0,
+      "area_cmos": 372.0,
+      "timing_proxy": null,
+      "power_proxy": 372.0
+    },
+    "best_iteration": 1,
+    "iterations": 10,
+    "total_time": 28.110599279403687,
+    "generation_time": 25.182222366333008,
+    "error_handling_time": 2.92836856842041
+  },
+  "mux64_1": {
+    "best_file": "./mux_ppa_runs/mux64_1/mux64_1_best.v",
+    "best_metrics": {
+      "num_wires": 9,
+      "num_wire_bits": 455,
+      "num_public_wires": 3,
+      "num_public_wire_bits": 71,
+      "num_memories": null,
+      "num_memory_bits": null,
+      "num_processes": null,
+      "num_cells": 63,
+      "transistor_est": 756.0,
+      "area_cmos": 756.0,
+      "timing_proxy": null,
+      "power_proxy": 756.0
+    },
+    "best_iteration": 1,
+    "iterations": 10,
+    "total_time": 18.033700466156006,
+    "generation_time": 14.829252004623413,
+    "error_handling_time": 3.204439640045166
+  }
+}

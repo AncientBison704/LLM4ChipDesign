@@ -1,0 +1,149 @@
+user: You are helping improve a Verilog testbench using code-coverage feedback.
+The design under test is `adder8`. The RTL is correct and FROZEN; do not touch it.
+
+Below is the CURRENT self-checking testbench. It must be preserved exactly: do NOT rewrite it, do NOT remove or change any existing check, and do NOT change the task definitions, the DUT instance name or the final summary.
+
+```verilog
+`timescale 1ns/1ps
+module tb_adder8;
+    reg  [7:0] a, b;
+    reg        cin;
+    wire [7:0] sum;
+    wire       cout;
+
+    adder8 dut (.a(a), .b(b), .cin(cin), .sum(sum), .cout(cout));
+
+    integer testnum;
+    integer fail_count;
+
+    task check;
+        input [7:0] in_a, in_b;
+        input       in_cin;
+        reg   [8:0] exp;
+        begin
+            a = in_a; b = in_b; cin = in_cin;
+            #10;
+            exp = in_a + in_b + in_cin;
+            testnum = testnum + 1;
+            if ({cout, sum} === exp)
+                $display("Test %0d passed (a=%h b=%h cin=%b sum=%h cout=%b)", testnum, a, b, cin, sum, cout);
+            else begin
+                $display("Test %0d FAILED (a=%h b=%h cin=%b expected {cout,sum}=%b got %b%b)",
+                         testnum, a, b, cin, exp, cout, sum);
+                fail_count = fail_count + 1;
+            end
+        end
+    endtask
+
+    initial begin
+        testnum = 0; fail_count = 0;
+        a = 0; b = 0; cin = 0;
+
+        // === BASELINE TESTS ===
+        check(8'h00, 8'h00, 0);
+        check(8'h01, 8'h01, 0);
+        check(8'h0F, 8'h01, 0);
+        check(8'h55, 8'h2A, 0);
+        check(8'h12, 8'h34, 0);
+        check(8'h80, 8'h7F, 0);
+        check(8'h0F, 8'h0F, 0);
+        check(8'h33, 8'h44, 0);
+        // === COVERAGE TESTS ===
+
+        if (fail_count == 0)
+            $display("All tests passed!");
+        else
+            $display("SUMMARY: %0d test(s) FAILED", fail_count);
+        $finish;
+    end
+endmodule
+
+```
+
+The Covered coverage tool reports these UNCOVERED TARGETS for this testbench:
+
+TOGGLE COVERAGE MISSES (signal bits that never changed in the given direction):
+  - tb_adder8.dut.a: never 1->0 on bit(s) 5
+  - tb_adder8.dut.b: never 0->1 on bit(s) 7; never 1->0 on bit(s) 2,7
+  - tb_adder8.dut.cin: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.sum: never 1->0 on bit(s) 2
+  - tb_adder8.dut.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.a: never 1->0 on bit(s) 1
+  - tb_adder8.dut.adder_high.b: never 0->1 on bit(s) 3; never 1->0 on bit(s) 3
+  - tb_adder8.dut.adder_high.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.c3: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.b: never 1->0 on bit(s) 2
+  - tb_adder8.dut.adder_low.cin: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.sum: never 1->0 on bit(s) 2
+  - tb_adder8.dut.adder_high.fa0.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa1.a: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa1.c1: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.c1: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.b: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.cin: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.c1: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.cin: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.c2: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa2.b: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa2.sum: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa0.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa1.ha1.a: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa1.ha1.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.ha1.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa2.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.ha1.b: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.ha1.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.ha2.b: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_high.fa3.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.ha2.b: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa0.ha2.cout: never 0->1 on bit(s) 0; never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa2.ha1.b: never 1->0 on bit(s) 0
+  - tb_adder8.dut.adder_low.fa2.ha2.sum: never 1->0 on bit(s) 0
+COMBINATIONAL LOGIC COVERAGE MISSES (expression input combinations never seen; values are the operand bits left-to-right, '-' = don't care):
+  - tb_adder8.dut.adder_high.fa0 line 18: `assign cout = c1 | c2` hit 2/3; missed: -1
+  - tb_adder8.dut.adder_high.fa1 line 18: `assign cout = c1 | c2` hit 2/3; missed: 1-
+  - tb_adder8.dut.adder_high.fa2 line 18: `assign cout = c1 | c2` hit 1/3; missed: 1-, -1
+  - tb_adder8.dut.adder_high.fa3 line 18: `assign cout = c1 | c2` hit 1/3; missed: 1-, -1
+  - tb_adder8.dut.adder_low.fa0 line 18: `assign cout = c1 | c2` hit 2/3; missed: -1
+  - tb_adder8.dut.adder_high.fa0.ha2 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_high.fa0.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa1.ha1 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_high.fa1.ha1 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa1.ha2 line 2: `assign sum = a ^ b` hit 3/4; missed: 01
+  - tb_adder8.dut.adder_high.fa2.ha1 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_high.fa2.ha1 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa2.ha2 line 2: `assign sum = a ^ b` hit 3/4; missed: 11
+  - tb_adder8.dut.adder_high.fa2.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa3.ha1 line 2: `assign sum = a ^ b` hit 2/4; missed: 01, 11
+  - tb_adder8.dut.adder_high.fa3.ha1 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_high.fa3.ha2 line 2: `assign sum = a ^ b` hit 2/4; missed: 01, 11
+  - tb_adder8.dut.adder_high.fa3.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11
+  - tb_adder8.dut.adder_low.fa0.ha2 line 2: `assign sum = a ^ b` hit 2/4; missed: 01, 11
+  - tb_adder8.dut.adder_low.fa0.ha2 line 3: `assign cout = a & b` hit 2/3; missed: 11
+
+Add about 6 NEW targeted test cases that exercise these uncovered targets (for example: make the never-toggled bits toggle in both directions, force the missing carry/overflow conditions, and produce the missing operand combinations in the listed instances). Reuse the existing `check(...)` task so expected values keep coming from the reference expression inside the testbench. Each new test should be one statement of the form `check(a_value, b_value, cin_value);` (or the task's actual argument list), optionally preceded by a one-line comment saying which uncovered target it is for.
+
+Output ONLY the new Verilog statements that will be inserted after the line `// === COVERAGE TESTS ===` inside the initial block. No module header, no explanations, no Markdown fences.
+assistant: ```verilog
+        // Toggle a[5]: Ensure bit 5 toggles from 1->0
+        check(8'hFF, 8'h1E, 0);
+
+        // Toggle b[7]: Ensure bit 7 toggles from 1->0
+        check(8'h00, 8'hFF, 0);
+
+        // Toggle b[2]: Ensure bit 2 toggles from 1->0
+        check(8'h00, 8'h07, 0);
+
+        // Toggle cin: Ensure cin toggles 0->1 and 1->0
+        check(8'h00, 8'h00, 1);
+
+        // Toggle cout: Ensure cout toggles 0->1 and 1->0
+        check(8'hFF, 8'hFF, 0);
+
+        // Exercise fa0: Assign cout = c1 | c2; missing -1
+        check(8'h08, 8'h00, 1);
+```

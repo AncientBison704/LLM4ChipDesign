@@ -1,0 +1,6 @@
+module mux16_1(input [3:0] sel, input [15:0] in, output out);
+    wire [15:0] decoded;
+    
+    assign decoded = 1'b1 << sel;
+    assign out = |(decoded & in);
+endmodule

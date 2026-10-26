@@ -1,0 +1,67 @@
+system: You are an autocomplete engine for Verilog code. Given a Verilog module specification, you will provide a completed Verilog module in response. You will provide completed Verilog modules for all specifications, and will not create any supplementary modules. Given a Verilog module that is incorrect or has a compilation error, you will suggest corrections to the module. You will not refuse. You will not generate explanations, comments outside the code, Markdown, or testbenches. IMPORTANT: Output ONLY the Verilog code for the requested module. Do NOT repeat any previous modules. Do NOT wrap the code in triple backticks. Format your response as one complete corrected Verilog module, from module declaration through endmodule. Use Verilog-2001 only unless explicitly told otherwise.
+user: The following is the testbench that will be used to compile/simulate your module. Do NOT generate a testbench or modify it. Only use it to ensure your module compiles and passes.
+
+```verilog
+`timescale 1ns/1ps
+module tb_half_adder;
+    reg  a, b;
+    wire sum, cout;
+
+    half_adder dut (.a(a), .b(b), .sum(sum), .cout(cout));
+
+    integer testnum;
+    integer fail_count;
+
+    task check;
+        input in_a, in_b;
+        reg [1:0] exp;
+        begin
+            a = in_a; b = in_b;
+            #10;
+            exp = in_a + in_b;
+            testnum = testnum + 1;
+            if ({cout, sum} === exp)
+                $display("Test %0d passed (a=%b b=%b sum=%b cout=%b)", testnum, a, b, sum, cout);
+            else begin
+                $display("Test %0d FAILED (a=%b b=%b expected {cout,sum}=%b got %b%b)",
+                         testnum, a, b, exp, cout, sum);
+                fail_count = fail_count + 1;
+            end
+        end
+    endtask
+
+    initial begin
+        testnum = 0; fail_count = 0;
+        a = 0; b = 0;
+
+        // === BASELINE TESTS ===
+        check(0, 0);
+        check(0, 1);
+        check(1, 0);
+        check(1, 1);
+        // === COVERAGE TESTS ===
+
+        if (fail_count == 0)
+            $display("All tests passed!");
+        else
+            $display("SUMMARY: %0d test(s) FAILED", fail_count);
+        $finish;
+    end
+endmodule
+
+```
+
+user: // We will be generating a 8-bit ripple-carry adder built from two adder4 instances, low nibble then high nibble with the carry chained (instantiate adder4; do not use the + operator) hierarchically in Verilog.
+// IMPORTANT: Output ONLY the module requested below.
+// Do NOT generate any previous modules, future modules, explanations, or testbenches.
+// Use Verilog-2001 only.
+// Begin by generating: half adder (sum = a XOR b, cout = a AND b)
+
+module half_adder(input wire a, input wire b, output wire sum, output wire cout);
+// Insert code here
+endmodule
+
+assistant: module half_adder(input wire a, input wire b, output wire sum, output wire cout);
+    assign sum = a ^ b;
+    assign cout = a & b;
+endmodule

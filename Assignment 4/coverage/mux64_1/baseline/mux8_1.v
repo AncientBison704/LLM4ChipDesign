@@ -1,0 +1,22 @@
+module mux8_1(input [2:0] sel, input [7:0] in, output wire out);
+    wire out0, out1;
+
+    mux4_1 mux_lower(
+        .sel(sel[1:0]),
+        .in(in[3:0]),
+        .out(out0)
+    );
+
+    mux4_1 mux_upper(
+        .sel(sel[1:0]),
+        .in(in[7:4]),
+        .out(out1)
+    );
+
+    mux2_1 mux_final(
+        .in1(out0),
+        .in2(out1),
+        .select(sel[2]),
+        .out(out)
+    );
+endmodule

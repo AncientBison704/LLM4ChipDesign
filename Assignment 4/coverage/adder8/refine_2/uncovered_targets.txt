@@ -1,0 +1,1 @@
+No uncovered targets: line, toggle and logic coverage are all 100%.

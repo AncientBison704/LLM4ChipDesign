@@ -1,0 +1,23 @@
+[
+  {
+    "design": "adder8",
+    "phase": "coverage",
+    "target": "./coverage/adder8/tb_iter_0.v",
+    "change": "baseline measurement (no change)",
+    "result": "line 100% (40/40) | toggle 0->1 85% (160/189) | toggle 1->0 78% (148/189) | logic 82% (111/136)"
+  },
+  {
+    "design": "adder8",
+    "phase": "TB",
+    "target": "./coverage/adder8/tb_iter_1.v",
+    "change": "round 1: added coverage-guided tests",
+    "result": "passed on frozen RTL"
+  },
+  {
+    "design": "adder8",
+    "phase": "TB",
+    "target": "./coverage/adder8/tb_iter_2.v",
+    "change": "round 2: added coverage-guided tests",
+    "result": "passed on frozen RTL"
+  }
+]

@@ -1,0 +1,5 @@
+module mux8_1(input [2:0] sel, input [7:0] in, output out);
+  wire [3:0] sel_dec;
+  assign sel_dec = 1 << sel;
+  assign out = |(in & sel_dec);
+endmodule

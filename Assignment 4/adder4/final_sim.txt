@@ -1,0 +1,10 @@
+iverilog -o ./adder4/adder4_final ./half_adder/half_adder.v ./full_adder/full_adder.v ./adder4/adder4.v ./adder_tb/adder4_tb.v
+vvp ./adder4/adder4_final
+Test 1 passed (a=0 b=0 cin=0 sum=0 cout=0)
+Test 2 passed (a=1 b=1 cin=0 sum=2 cout=0)
+Test 3 passed (a=5 b=a cin=0 sum=f cout=0)
+Test 4 passed (a=7 b=1 cin=0 sum=8 cout=0)
+Test 5 passed (a=3 b=4 cin=0 sum=7 cout=0)
+Test 6 passed (a=9 b=6 cin=0 sum=f cout=0)
+All tests passed!
+./adder_tb/adder4_tb.v:49: $finish called at 60000 (1ps)

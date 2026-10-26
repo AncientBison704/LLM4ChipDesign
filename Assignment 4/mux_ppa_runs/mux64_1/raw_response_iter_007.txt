@@ -1,0 +1,3 @@
+module mux64_1(input [5:0] sel, input [63:0] in, output out);
+  assign out = in[sel];
+endmodule
