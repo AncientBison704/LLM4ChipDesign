@@ -1,0 +1,25 @@
+scheme,gate,expression,dyn_ok,wrong_K00,wrong_K01,wrong_K10,wrong_K11,min_wrong,n_patterns,integrity,irrelevant_keys,terms,literals
+RKC-m2,AND,K1'A + K2B,True,1,2,1,1,1,4,True,10,2,4
+RKC-m2,NAND,K1'A' + K1K2B',True,1,1,3,1,1,4,True,10,2,5
+RKC-m2,OR,K2A + K1'K2'B,True,1,1,3,1,1,4,True,10,2,5
+RKC-m2,NOR,K1'B' + K2A',True,1,2,1,1,1,4,True,10,2,4
+RKC-m2,XOR,K1'B + K2AB',True,2,1,2,1,1,4,True,10,2,5
+RKC-m2,XNOR,K1'B' + K2AB,True,2,1,2,1,1,4,True,10,2,5
+RKC-m4,AND,K1B + K2A,True,1,1,1,2,1,4,True,00,2,4
+RKC-m4,NAND,K1'A' + K1K2'B',True,1,1,1,3,1,4,True,11,2,5
+RKC-m4,OR,K2B + K1K2'A,True,3,1,1,1,1,4,True,00,2,5
+RKC-m4,NOR,K1'B' + K2'A',True,2,1,1,1,1,4,True,11,2,4
+RKC-m4,XOR,K1'B + K2'A,True,1,2,2,2,1,4,True,11,2,4
+RKC-m4,XNOR,K1'B' + K2A,True,2,1,2,2,1,4,True,10,2,4
+MKC-m2,AND-AND,K1'A + K2BC,True,3,4,1,1,1,8,True,10,2,5
+MKC-m2,AND-NAND,K1'A' + K1C' + K2B',True,3,1,3,1,1,8,True,-,3,6
+MKC-m2,AND-OR,K1'C + K2B + AC,True,1,1,3,2,1,8,True,-,3,6
+MKC-m2,AND-NOR,K1'C' + K2AB'C',True,1,1,3,2,1,8,True,10,2,6
+MKC-m2,AND-XOR,K1'C + K2BC' + AB'C,True,2,2,3,3,2,8,True,-,3,8
+MKC-m2,AND-XNOR,K1'C' + K2B'C' + ABC,True,1,1,3,1,1,8,True,-,3,8
+MKC-m4,AND-AND,K1'AB + K2AC,True,1,2,1,1,1,8,True,10,2,6
+MKC-m4,AND-NAND,K1'A' + K1B' + K2C',True,3,1,3,1,1,8,True,-,3,6
+MKC-m4,AND-OR,K1'C + K2A + B'C,True,1,1,3,2,1,8,True,-,3,6
+MKC-m4,AND-NOR,K1'C' + K2A'B' + B'C',True,1,2,1,2,1,8,True,-,3,7
+MKC-m4,AND-XOR,K1'C + K2AC' + B'C,True,2,2,2,2,2,8,True,-,3,7
+MKC-m4,AND-XNOR,K1'C' + K2AC + B'C',True,2,2,2,2,2,8,True,-,3,7

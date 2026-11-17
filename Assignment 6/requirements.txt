@@ -1,0 +1,4 @@
+python-sat>=1.8
+matplotlib
+pytest
+yowasp-yosys

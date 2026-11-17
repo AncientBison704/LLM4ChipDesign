@@ -1,0 +1,59 @@
+# Stage 3 - Refinement checklist (LockForge content mining), self-evaluated by LLM-A.
+# Score = max(1, 10*(0.4*B + 0.3*C + 0.2*S + 0.1*R) - P)
+paper: "Replacement-Based Key-Controlled Circuits (Appl. Sci. 2026, 16, 925)"
+
+behaviour:          # B = passed / total
+  - id: B1
+    check: Every KCC equals the original gate/topology for all inputs when K1,K2 are driven by the LUT memory
+    evidence: tests/test_core.py::test_kcc_correct_under_lut_key (24 cases); experiments/exp1_kcc_tables.py
+    pass: true
+  - id: B2
+    check: For every KCC and every static (K1,K2) at least one input pattern is wrong
+    evidence: tests/test_core.py::test_no_static_key_unlocks_kcc (24 cases)
+    pass: true
+  - id: B3
+    check: Locked benchmark with MUX memory and correct cell contents is SAT-proven equivalent to the original
+    evidence: tests/test_core.py::test_activated_circuit_equals_original (4 schemes x 2 storage modes)
+    pass: true
+  - id: B4
+    check: Wrong static keys corrupt benchmark outputs
+    evidence: tests/test_core.py::test_static_view_has_2_keys_per_site_and_wrong_keys_corrupt
+    pass: true
+  - id: B5
+    check: Attack code is sound (recovers an equivalent key on XOR/XNOR random locking)
+    evidence: tests/test_core.py::test_sat_attack_breaks_rll; results/exp5_netlist_aware_summary.csv (60/60)
+    pass: true
+  B: 1.0
+
+concepts:           # C = implemented / required (ids from 01_forethought.md)
+  C1_replacement:            {implemented: true, where: "rkc/lock.py::lock (remove_gate + _emit_sop on the same net)"}
+  C2_two_key_lines_per_site: {implemented: true, where: "rkc/lock.py::lock"}
+  C3_table1_rkc_m2:          {implemented: true, where: "rkc/kcc.py::TABLES"}
+  C4_table2_rkc_m4:          {implemented: true, where: "rkc/kcc.py::TABLES"}
+  C5_table3_mkc_m2:          {implemented: true, where: "rkc/kcc.py::TABLES"}
+  C6_table4_mkc_m4:          {implemented: true, where: "rkc/kcc.py::TABLES"}
+  C7_lut_memory_select:      {implemented: true, where: "rkc/kcc.py::key_select; rkc/lock.py (MUX gates)"}
+  C8_storage_2x_1x:          {implemented: true, where: "rkc/lock.py::lock(storage=...)"}
+  C9_independent_W:          {implemented: true, where: "rkc/lock.py::lock (fanout check), tests::test_mkc_absorbs_independent_and_gate"}
+  C10_security_property:     {implemented: true, where: "experiments/exp1_kcc_tables.py"}
+  C11_same_random_sites:     {implemented: true, where: "rkc/lock.py::choose_sites; experiments/exp2_sat_attack.py"}
+  C: 1.0
+
+structure:          # S = 1 - mismatched / total structural components
+  - {component: "KCC as 2-level AND-OR (+inverters) exactly as the printed SOP", match: true}
+  - {component: "one 2:1 MUX per key line, select = circuit input", match: true}
+  - {component: "memory cells exposed as key inputs in the full view", match: true}
+  - {component: "W kept when it has other fanout / is a primary output", match: true}
+  S: 1.0
+
+reproducibility:    # R: 1.0 full run, 0.5 minor tweaks, 0.0 fail
+  run: "./run_all.sh on a clean checkout (pip install -r requirements.txt)"
+  R: 1.0
+
+penalties:          # experiments of the paper that are NOT reproduced
+  - {item: "Power overhead (Fig. 14b, 15b, Table 7 power row): no DC/TSMC28, no open power flow", severity: minor, points: 1}
+  - {item: "Baselines GateLock / SKG-Lock / SKG-Lock+ / CAS-Lock not implemented, so the cross-scheme ordering is not checked", severity: minor, points: 1}
+  P: 2
+
+self_score: 8.0     # 10*(0.4+0.3+0.2+0.1) - 2
+iterations_used: 3  # see docs/AGENT_LOG.md

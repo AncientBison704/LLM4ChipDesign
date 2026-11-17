@@ -1,0 +1,9 @@
+d,scheme,avg_runtime_s,avg_iterations,wrong_key,no_key,equivalent_key,wrong_key_avg_err_patterns
+12,RKC-m2,0.029,3.3,5,5,0,0.181
+12,RKC-m4,0.031,3.1,6,4,0,0.173
+12,MKC-m2,0.036,10.2,2,8,0,0.061
+12,MKC-m4,0.026,8.4,1,9,0,0.065
+2,RKC-m2,0.016,2.2,0,10,0,
+2,RKC-m4,0.015,2.2,0,10,0,
+2,MKC-m2,0.028,2.4,0,10,0,
+2,MKC-m4,0.026,2.4,0,10,0,
